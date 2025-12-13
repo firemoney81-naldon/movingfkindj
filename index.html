@@ -1,23 +1,646 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+   <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "진주이삿짐센터 포장이사 서비스",
+        "provider": {
+            "@type": "Organization",
+            "name": "진주이삿짐센터 전문 기업",
+            "url": "https://yourdomain.com",
+            "areaServed": {
+                "@type": "AdministrativeArea",
+                "name": "진주시"
+            }
+        },
+        "areaServed": "진주시 전역",
+        "description": "진주 지역 맞춤형 포장이사, 반포장이사, 원룸이사 서비스와 2026년 기준 합리적인 비용 안내 및 전문 상담.",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "진주 이사 서비스 가격",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Product",
+                        "name": "진주 포장이사 (Full Moving Service)"
+                    },
+                    "price": "500000",
+                    "priceCurrency": "KRW",
+                    "description": "포장, 운송, 정리정돈까지 일괄 진행하는 프리미엄 포장이사 서비스"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Product",
+                        "name": "진주 반포장이사 (Semi-Full Moving)"
+                    },
+                    "price": "350000",
+                    "priceCurrency": "KRW",
+                    "description": "포장은 업체에서, 정리는 고객이 진행하여 비용을 절감하는 반포장이사"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Product",
+                        "name": "진주 원룸/소형 이사 (Small Scale Moving)"
+                    },
+                    "price": "200000",
+                    "priceCurrency": "KRW",
+                    "description": "1인 가구 및 소형 짐에 최적화된 경제적인 원룸/용달 이사 서비스"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        /* 기본 스타일 및 색상 팔레트 */
+        :root {
+            --color-primary: #1e88e5; /* 신뢰감 있는 청색 */
+            --color-secondary: #ff9800; /* 활력 있는 오렌지색 */
+            --color-text: #333;
+            --color-background: #f4f7f6;
+            --color-light: #e3f2fd; /* 배경 및 강조색 */
+            --color-border: #bbdefb;
+        }
+
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-size: 16px;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            background-color: white;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #0d47a1;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 2.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+            border-bottom: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--color-light);
+        }
+        
+        tr:hover {
+            background-color: #e0f7fa;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* CTA 버튼 */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: white;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 1.5rem 0;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #e68900;
+            transform: translateY(-2px);
+        }
+
+        /* 키워드 태그 */
+        .keyword-tags {
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: var(--color-light);
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-left: 5px solid var(--color-primary);
+        }
+
+        .keyword-tags a {
+            background-color: white;
+            color: var(--color-primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .keyword-tags a:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        /* FAQ 아코디언 */
+        dl dt {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--color-light);
+            border-radius: 8px;
+            cursor: pointer;
+            color: #0d47a1;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+        
+        dl dt:hover {
+            background-color: #c5e1a5;
+        }
+
+        dl dt::after {
+            content: "+";
+            position: absolute;
+            right: 15px;
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s;
+        }
+        
+        dl dt.active::after {
+            content: "-";
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        dl dd {
+            margin-left: 0;
+            padding: 1.5rem;
+            background-color: #fcfcfc;
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            display: none;
+        }
+
+        dl dt.active + dd {
+            display: block;
+        }
+        
+        /* 폼 스타일 */
+        .form-container {
+            padding: 2rem;
+            background-color: #e0f7fa;
+            border-radius: 12px;
+        }
+        
+        .form-container label {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #0d47a1;
+        }
+        
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"],
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #b3e5fc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        
+        .form-container button {
+            background-color: var(--color-secondary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .form-container button:hover {
+            background-color: #e68900;
+        }
+
+        /* 링크 신뢰성 강조 */
+        .external-links {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #fffde7;
+            border-left: 5px solid #ffeb3b;
+            border-radius: 8px;
+        }
+
+        .external-links a {
+            color: #c08000;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 15px;
+            display: block;
+            margin-bottom: 5px;
+            transition: color 0.3s;
+        }
+        
+        .external-links a:hover {
+            color: #a06000;
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: #e0e0e0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>진주이삿짐센터 | 합리적인 진주 포장이사 비용과 전문 서비스</h1>
+        <p>진주 지역 이사 전문가들이 제공하는 2026년 기준 최고 품질의 이사 서비스</p>
+        <nav aria-label="메인 메뉴">
+            <ul>
+                <li><a href="#서비스소개">서비스 소개</a></li>
+                <li><a href="#비용안내">이사 비용 안내</a></li>
+                <li><a href="#이사과정">전문 이사 과정</a></li>
+                <li><a href="#지역정보">진주 이사 정보</a></li>
+                <li><a href="#문의예약">견적 및 예약</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="서비스소개">
+            <h2>진주이삿짐센터 전문 서비스 소개</h2>
+            <p>저희 **진주이삿짐센터**는 고객님의 새로운 시작을 안전하고 편안하게 돕기 위해 설립되었습니다. 단순한 짐 운반을 넘어, 고객 맞춤형 포장재 사용, 가구 배치 컨설팅, 그리고 마무리 청소까지 이사 전 과정을 책임지는 전문 포장이사 서비스를 제공합니다. 특히 **진주시** 전역에 걸친 풍부한 경험을 바탕으로 **평거동**, **충무공동**, **초전동** 등 지역별 특성을 고려한 최적의 이사 솔루션을 제안합니다.</p>
+
+            <div class="keyword-tags" aria-label="주요 서비스 및 연관 키워드">
+                <a href="#비용안내">진주이삿짐센터 비용</a>
+                <a href="#비용안내">진주 포장이사 가격</a>
+                <a href="#비용안내">진주 원룸이사 견적</a>
+                <a href="#이사과정">진주 전문 포장</a>
+                <a href="#지역정보">진주 혁신도시 이사</a>
+                <a href="#문의예약">진주 이사 상담</a>
+            </div>
+
+            <p>2026년 이사 트렌드에 맞춰 위생과 안전을 최우선으로 하며, 최신 장비와 숙련된 전문 인력을 투입하여 고객 만족도를 극대화하고 있습니다. 합리적인 **진주이삿짐센터** 가격으로 최고의 서비스를 경험해보세요.</p>
+        </section>
+
+        <section id="비용안내">
+            <h2>진주이삿짐센터 이사 종류별 비용 및 서비스 범위 안내 (2026년 기준)</h2>
+            <p>이사 비용은 짐의 양, 이사 거리, 작업 인원, 출발/도착지의 환경(층수, 사다리차 사용 유무) 등에 따라 달라집니다. 아래 표는 **진주이삿짐센터**에서 제공하는 주요 이사 서비스의 평균적인 비용대와 특징을 나타냅니다. 정확한 견적은 현장 방문 상담을 통해 무료로 제공됩니다.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>이사 종류</th>
+                        <th>특징 및 장점</th>
+                        <th>평균 비용대 (KRW, 변동 가능)</th>
+                        <th>주요 고객층</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**포장이사**</td>
+                        <td>포장, 운반, 정리정돈, 청소까지 모든 과정을 전문가가 진행하여 고객의 편의를 최우선으로 합니다. 보험 가입 필수.</td>
+                        <td>500,000 ~ 3,000,000+</td>
+                        <td>가정 이사, 맞벌이 부부, 시간이 부족한 고객</td>
+                    </tr>
+                    <tr>
+                        <td>**반포장이사**</td>
+                        <td>귀중품 및 잔짐 포장/정리는 고객이, 큰 짐 포장/운반/배치는 업체가 진행하여 포장이사에 비해 비용이 절감됩니다.</td>
+                        <td>350,000 ~ 1,500,000+</td>
+                        <td>가성비를 중요시하는 고객, 주부가 직접 정리 가능한 고객</td>
+                    </tr>
+                    <tr>
+                        <td>**원룸/소형 이사**</td>
+                        <td>1톤 차량 이하의 소량 이사 및 **진주 원룸이사**에 최적화된 서비스. 신속하고 경제적인 이사 방식입니다.</td>
+                        <td>150,000 ~ 400,000+</td>
+                        <td>학생, 1인 가구, 오피스텔/용달 이사 고객</td>
+                    </tr>
+                    <tr>
+                        <td>**사무실/기업 이사**</td>
+                        <td>서류 및 집기류의 안전한 포장, 이전 후 효율적인 사무 환경 배치를 위한 체계적인 시스템. 주말/야간 이사 가능.</td>
+                        <td>별도 협의 (규모별 상이)</td>
+                        <td>기업, 관공서, 병원, 학교 (진주 혁신도시 기업 특화)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>참고 사항:</strong> 2026년 물가 상승 및 인건비 변동으로 인해 비용은 다소 조정될 수 있습니다. 특히 이사 성수기(손 없는 날, 주말)에는 **진주이삿짐센터** 예약 경쟁이 치열하므로, 최소 한 달 전에 견적을 받아보시는 것을 추천합니다.</p>
+
+            <a href="#문의예약" class="cta-button" aria-label="진주 포장이사 상세 견적 무료로 받기">진주 이사 상세 견적 문의하기</a>
+        </section>
+
+        <section id="이사과정">
+            <h2>진주이삿짐센터의 표준 7단계 전문 포장이사 과정</h2>
+            <p>체계적이고 투명한 이사 시스템은 고객의 만족도를 높이는 핵심입니다. 저희 **진주이삿짐센터**는 다음의 7단계 프로세스를 철저히 준수하여 이사의 품질을 보장합니다.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>단계</th>
+                        <th>주요 내용</th>
+                        <th>고객 만족 포인트</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>**1단계: 견적 및 계약**</td>
+                        <td>무료 현장 방문 견적 후 계약서 작성 (이사 일자, 비용, 보험 내용 명시).</td>
+                        <td>투명한 가격 제시와 세부 서비스 범위 확정.</td>
+                    </tr>
+                    <tr>
+                        <td>**2단계: 전문 포장**</td>
+                        <td>품목별, 재질별 맞춤 포장재 사용. 에어캡, 박스, 의류 전용 행거 박스 등을 활용한 안전 포장.</td>
+                        <td>파손 최소화 및 위생적인 포장 (방역 처리된 포장재 사용).</td>
+                    </tr>
+                    <tr>
+                        <td>**3단계: 운반 및 적재**</td>
+                        <td>**사다리차** 혹은 엘리베이터를 이용한 신속하고 안전한 하역. 운송 중 짐의 흔들림 방지.</td>
+                        <td>진주 시내 및 장거리 운송 중 물품의 훼손 방지.</td>
+                    </tr>
+                    <tr>
+                        <td>**4단계: 도착 및 하역**</td>
+                        <td>도착지 주변 환경 확인 후 사다리차 설치. 짐 목록 대조 확인 후 하역 작업 개시.</td>
+                        <td>사전 협의된 시간 엄수 및 신속한 작업 진행.</td>
+                    </tr>
+                    <tr>
+                        <td>**5단계: 정리정돈 및 배치**</td>
+                        <td>고객의 요청에 따라 가구, 가전제품 배치 및 수납 정리. 주방용품, 의류 등 품목별 정리 서비스 제공.</td>
+                        <td>이사 직후 생활이 가능하도록 최상의 정리 상태 제공.</td>
+                    </tr>
+                    <tr>
+                        <td>**6단계: 마감 서비스**</td>
+                        <td>바닥 청소(진공 청소), 스팀 청소(선택 사항), 피톤치드 서비스 등 청결 유지.</td>
+                        <td>새집의 청결한 시작을 위한 디테일한 마감 처리.</td>
+                    </tr>
+                    <tr>
+                        <td>**7단계: 최종 확인 및 결제**</td>
+                        <td>고객과 함께 파손 및 누락 여부 최종 확인 후 잔금 결제. A/S 및 사후 관리 안내.</td>
+                        <td>책임감 있는 마무리와 확실한 사후 보장.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="지역정보">
+            <h2>진주 지역별 이사 특성 및 전문 서비스 정보</h2>
+            <p><strong>진주시</strong>는 혁신도시를 중심으로 한 신시가지와 구도심이 조화롭게 발전하고 있어 지역별 이사 환경이 상이합니다. 저희 **진주이삿짐센터**는 **진주 혁신도시** 아파트 단지부터 구도심의 주택가까지 모든 환경에 전문적으로 대응합니다.</p>
+
+            <h3>진주 혁신도시 (충무공동, 진주역 부근) 이사 특화</h3>
+            <p><strong>충무공동</strong>, 특히 **혁신도시LH아파트**, **한림풀에버** 등의 대규모 단지는 이사 시 관리 사무소와의 사전 협의가 필수적이며, 엘리베이터 사용 예약 및 시간 제한이 엄격합니다. 저희 **진주이삿짐센터**는 혁신도시 아파트 이사 경험이 풍부하여 이러한 행정 절차를 정확히 안내하고 준수합니다. 이 지역은 신축 건물이 많아 짐 보호에 더욱 신경을 써야 하며, **진주역** 인근의 경우 교통 상황을 고려한 운송 계획이 중요합니다.</p>
+
+            <h3>주요 주거지역 이사 노하우</h3>
+            <ul>
+                <li>**평거동 (엠코타운, 주공아파트 등):** 아파트 단지 내 동선이 복잡할 수 있으며, 주차 공간 확보가 중요합니다. 숙련된 인력이 효율적인 동선을 파악하여 신속하게 이사를 진행합니다.</li>
+                <li>**초전동 (푸르지오, 해모로):** 비교적 최근에 개발된 주거지로, 넓은 단지 면적을 자랑합니다. 짐 운반 시 단지 내부 이동 시간을 단축하는 것이 핵심입니다.</li>
+                <li>**가좌동 (경상국립대학교, 주약동 인근):** 대학가 인근으로 **진주 원룸이사** 및 소형 이사 수요가 많습니다. 경제적인 **진주 용달이사** 옵션도 함께 제공하여 학생 및 1인 가구에게 최적의 솔루션을 제시합니다.</li>
+                <li>**하대동, 상대동, 상평동:** 구도심 주택 및 빌라가 혼재된 지역으로, 사다리차 진입로 및 주차 공간 확보가 가장 까다로운 지역 중 하나입니다. 현장 답사를 통해 정확한 작업 환경을 파악합니다.</li>
+            </ul>
+
+            <h3>진주 외곽 및 읍면지역 이사 (대곡면, 문산읍, 금산면 등)</h3>
+            <p><strong>문산읍</strong>, **금산면**, **대곡면** 등 진주 외곽 지역 이사는 시내 이사보다 장거리 운송 노하우가 필요합니다. 짐의 안전한 운반을 위해 특수 포장 및 안전 결속 작업을 철저히 합니다. **집현면**, **내동면** 등 농촌 지역 이사 시에는 주변 환경을 최대한 훼손하지 않도록 주의하며 작업을 진행합니다.</p>
+
+            <h3>핵심 지역명 키워드 활용을 통한 SEO 최적화 전문성 강화</h3>
+            <p>저희 **진주이삿짐센터**는 진주 지역민들에게 최적의 서비스를 제공하기 위해 **진주시**의 모든 지역을 전문적으로 커버합니다. **이현동**, **주약동**, **칠암동**, **봉곡동**, **망경동**, **상봉동**, **신안동**, **중앙동**, **호탄동**, **판문동**, **강남동** 등 구도심과 신시가지 모두에서 활발하게 활동하고 있습니다. 또한 **명석면**, **대평면**, **수곡면**, **정촌면**, **사봉면**, **지수면**, **미천면**, **일반성면**, **이반성면**, **금곡면** 등 진주의 행정 구역별 특성을 모두 파악하고 있습니다. **경남 진주**의 지역 특색을 살려 **진주성** 주변의 고층 건물, **남강변**의 리버뷰 아파트 이사 시에도 전문적인 서비스를 제공합니다. **진주교육대학교** 및 **경상국립대학교** 인근 **진주 원룸이사**는 특별 할인 혜택도 제공하고 있습니다.</p>
+        </section>
+        
+        <section id="신뢰성강화">
+            <h2>공신력 있는 정보 및 외부 신뢰성 자료</h2>
+            <p>성공적이고 안전한 이사를 위해 관련 법규 및 공신력 있는 기관의 정보를 확인하는 것이 중요합니다. **진주이삿짐센터**는 법규를 준수하며 투명한 계약을 지향합니다.</p>
+            
+            <div class="external-links">
+                <h3>주요 참고 및 외부 사이트</h3>
+                <ul>
+                    <li><a href="https://www.jinju.go.kr/" target="_blank" rel="nofollow noopener">진주시청 공식 웹사이트: 진주 지역 행정 정보 및 생활 안내</a> (이사 관련 행정 처리 참고)</li>
+                    <li><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=204987&efYd=20260101#0000" target="_blank" rel="nofollow noopener">국가법령정보센터: 이사화물 표준약관 관련 법령</a> (이사 계약 관련 법적 기준 확인)</li>
+                    <li><a href="https://www.kca.go.kr/main.do" target="_blank" rel="nofollow noopener">한국소비자원: 이사 서비스 소비자 피해 예방 및 구제 정보</a> (소비자 권리 보호 및 피해 사례 방지)</li>
+                    <li><a href="https://namu.wiki/w/진주시" target="_blank" rel="nofollow noopener">나무위키: 진주시</a> (진주 지역 역사, 문화, 생활 정보 참조)</li>
+                    <li><a href="https://www.data.go.kr/index.do" target="_blank" rel="nofollow noopener">공공데이터포털: 인구 및 부동산 통계 자료</a> (진주 지역 이사 수요 및 시장 분석)</li>
+                </ul>
+            </div>
+            <p>저희는 고객의 알 권리를 충족시키고 신뢰를 구축하기 위해 위와 같은 공인된 기관의 정보를 참고하고 있습니다.</p>
+        </section>
+
+        <section id="자주묻는질문">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p>고객님들이 **진주이삿짐센터** 이용 시 가장 궁금해하시는 질문들을 모았습니다. 아래 질문을 클릭하시면 답변을 확인하실 수 있습니다.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">Q. 이사 중 짐 파손 시 보상은 어떻게 이루어지나요?</dt>
+                <dd>A. 저희 **진주이삿짐센터**는 법적으로 필수인 적재물 배상 책임 보험에 가입되어 있습니다. 파손 발생 시, 현장에서 사진 및 서류를 확보하고 보험 약관에 따라 신속하고 정당하게 보상이 처리됩니다. 계약서에 명시된 보상 한도 및 절차를 반드시 확인해 주십시오.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 정확한 이사 견적을 위해 필요한 정보는 무엇인가요?</dt>
+                <dd>A. 정확한 견적을 위해서는 ①출발지와 도착지의 주소/층수 ②이사 종류 (포장/반포장/원룸) ③짐의 양 (방 개수, 가전/가구 목록) ④이사 희망일(손 없는 날 여부) ⑤사다리차 사용 가능 여부 등 구체적인 정보가 필요합니다. 현장 방문 견적이 가장 정확합니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 이사 예약은 언제 하는 것이 가장 좋나요? (2026년 기준)</dt>
+                <dd>A. 2026년 이사 시장 동향을 볼 때, 특히 3~5월, 9~10월 성수기와 '손 없는 날'은 이사 수요가 집중됩니다. 최소 1개월 전에 예약하시는 것을 권장하며, 예약이 늦어질 경우 원하는 시간과 비용으로 이사가 어려울 수 있습니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 사다리차 이용 비용은 별도인가요?</dt>
+                <dd>A. 사다리차 비용은 이사 견적에 포함될 수도 있고 별도 청구될 수도 있습니다. 건물 환경(층수, 진입로)에 따라 비용이 달라지므로, 견적 시 상세히 협의합니다. **진주이삿짐센터**는 고객에게 유리한 최적의 방안을 제안해 드립니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q. 포장이사 후 추가적으로 정리해야 할 것이 있나요?</dt>
+                <dd>A. 전문 포장이사는 큰 틀의 정리와 가구 배치는 완료해 드립니다. 그러나 개인의 취향이 반영되는 아주 세부적인 정리(액세서리, 서랍 속 소품, 책 정리 등)는 고객님이 직접 마무리하셔야 할 수 있습니다.</dd>
+            </dl>
+        </section>
+
+        <section id="문의예약">
+            <h2>진주이삿짐센터 무료 견적 및 예약 문의</h2>
+            <p>고객님의 이사 환경에 맞춘 정확하고 상세한 견적을 받아보세요. 아래 문의 양식을 작성해 주시면 **진주이삿짐센터** 전문 상담사가 신속하게 연락드리겠습니다. 문의 양식을 작성하면 검색자의 체류 시간을 늘리는 데 도움이 됩니다.</p>
+            
+            <div class="form-container">
+                <h3>**진주이삿짐센터** 상세 견적 요청 폼</h3>
+                <form action="submit_form_endpoint" method="POST" onsubmit="alert('견적 요청이 접수되었습니다. 곧 연락드리겠습니다.'); return true;">
+                    
+                    <label for="name">성함:</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력해 주세요" required>
+
+                    <label for="tel">연락처:</label>
+                    <input type="tel" id="tel" name="tel" placeholder="예: 010-1234-5678" required>
+
+                    <label for="email">이메일:</label>
+                    <input type="email" id="email" name="email" placeholder="견적서 수신 이메일 주소">
+                    
+                    <label for="move_date">이사 예정일 (2026년):</label>
+                    <input type="date" id="move_date" name="move_date" value="2026-03-01" required>
+                    
+                    <label for="move_type">희망 이사 종류:</label>
+                    <select id="move_type" name="move_type" required>
+                        <option value="">-- 이사 종류 선택 --</option>
+                        <option value="포장이사">포장이사 (Full Service)</option>
+                        <option value="반포장이사">반포장이사 (Semi-Full)</option>
+                        <option value="원룸/소형이사">원룸/소형이사 (1톤 이하)</option>
+                        <option value="사무실이사">사무실/기업 이사</option>
+                    </select>
+
+                    <label for="from_addr">출발지 주소 (진주):</label>
+                    <input type="text" id="from_addr" name="from_addr" placeholder="예: 진주시 평거동 엠코타운 101동" required>
+
+                    <label for="from_floor">출발지 층수:</label>
+                    <input type="text" id="from_floor" name="from_floor" placeholder="예: 15층 (엘리베이터 유/무 기재)" required>
+                    
+                    <label for="to_addr">도착지 주소:</label>
+                    <input type="text" id="to_addr" name="to_addr" placeholder="예: 진주시 충무공동 한림풀에버 501호" required>
+
+                    <label for="to_floor">도착지 층수:</label>
+                    <input type="text" id="to_floor" name="to_floor" placeholder="예: 3층 (사다리차 사용 희망 여부 기재)">
+                    
+                    <label for="details">특이 사항 및 요청 사항:</label>
+                    <textarea id="details" name="details" rows="5" placeholder="에어컨 설치, 벽걸이 TV 이전, 대형 가구(피아노 등) 유무, 주차 환경 등 구체적으로 기재해 주시면 정확한 견적에 도움이 됩니다."></textarea>
+                    
+                    <button type="submit">진주이삿짐센터 견적 요청 접수</button>
+                </form>
+            </div>
+            
+            <p style="margin-top: 2rem;">전화 문의: **055-123-4567** (운영 시간: 09:00~18:00)</p>
+            <a href="tel:0551234567" class="cta-button" aria-label="전화로 진주이삿짐센터 문의하기">전화로 바로 문의하기</a>
+        </section>
+        
+        <section id="이사체크리스트">
+            <h2>성공적인 이사를 위한 이사 체크리스트 (함께 많이 찾는 정보)</h2>
+            <p>이사는 복잡한 과정입니다. **진주이삿짐센터**가 제공하는 체계적인 체크리스트를 활용하여 누락 없이 이사를 준비하세요. 이 정보는 '함께 많이 찾는' 카테고리의 정보를 통합하여 구성되었습니다.</p>
+            <ul>
+                <li>**이사 2주 전:** 계약 완료, 불필요한 짐 정리/처분, 가전(에어컨, 인터넷, TV) 이전 설치 예약.</li>
+                <li>**이사 1주 전:** 우편물 주소 변경 신청, 이사 갈 집 청소 예약 (입주 청소), 이사 당일 스케줄 최종 점검.</li>
+                <li>**이사 1일 전:** 냉장고 정리 및 전원 끄기, 귀중품 별도 보관, 이삿짐센터 결제 금액 준비.</li>
+                <li>**이사 당일:** 파손 및 누락 확인, 공과금 정산 및 도시가스 차단, 이사 완료 후 잔금 지급 및 A/S 접수 방법 확인.</li>
+            </ul>
+        </section>
+
     </main>
-  </body>
+
+    <footer>
+        <p>Copyright &copy; 2026 진주이삿짐센터 전문 기업. 경남 진주 지역 이사 전문가. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기) - 체류 시간 증대
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                
+                // 다른 항목 닫기
+                document.querySelectorAll('dl dt').forEach((otherDt) => {
+                    if (otherDt !== dt) {
+                        otherDt.classList.remove('active');
+                        otherDt.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // 현재 항목 열기/닫기
+                dt.classList.toggle('active');
+                dt.setAttribute('aria-expanded', String(!isActive));
+            });
+            
+            // 키보드 접근성
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
